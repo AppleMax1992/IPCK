@@ -1,5 +1,3 @@
-secure,guarantee,safe,ensure,assure,fasten,clinch,insure,moor,belay,invulnerable,dependable,sure,obtain,make,fix,firm,procure,fortify,tight,steady
-insecure,unsafe,vulnerable,distrustful,overprotective,uncomfortable,fearful,precarious,shaky,unsecured,overanxious,unguaranteed,unprotected,unassured,dangerous,unstable,disturbed,chronically,clueless,neurotic
-adaptative,adaptative,adaptational,accommodative,adjustive,maladaptation,fitness,adaptable,evolution,process,reconciling,trait,adjustable,behaviour,optimized,nonlinear,predictive,spatial,optimal,cognitive
-perfective, preterite,pluperfect,perfect,aorist,future perfect,present perfect,perfective aspect,perfective tense,perfect tense,grammatical aspect,imperfective,aspect,tense,past perfective,form,imperfect,grammatical,tenses,participle
-corrective,pack,restorative,remedial,disciplinary,disciplinal,bettering,correction,nonindulgent,preventative,appropriate,preventive,drastic,prophylactic,correct,reactionary,pickup,strict,device,prosthesis
+version https://git-lfs.github.com/spec/v1
+oid sha256:a7af5b5f4d0b63723252896ceca2de5865171d1658bd7ec8fcd67374032afc26
+size 1000

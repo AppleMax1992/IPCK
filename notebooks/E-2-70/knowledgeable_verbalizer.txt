@@ -1,3 +1,3 @@
-adaptative,adaptative,adaptational,accommodative,adjustive,maladaptation,fitness,adaptable,evolution,process,reconciling,trait,adjustable,behaviour,optimized,nonlinear,predictive,spatial,optimal,cognitive
-perfective, preterite,pluperfect,perfect,aorist,future perfect,present perfect,perfective aspect,perfective tense,perfect tense,grammatical aspect,imperfective,aspect,tense,past perfective,form,imperfect,grammatical,tenses,participle
-corrective,pack,restorative,remedial,disciplinary,disciplinal,bettering,correction,nonindulgent,preventative,appropriate,preventive,drastic,prophylactic,correct,reactionary,pickup,strict,device,prosthesis
+version https://git-lfs.github.com/spec/v1
+oid sha256:0e076d3521c2c9ab570b24ae594224dc9781f08423250ef831fccb865be216cd
+size 644
