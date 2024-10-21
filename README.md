@@ -1,7 +1,7 @@
 # IPCK
 
 ## Environment
-Code demo for paper ``A commit classification framework incorporated with Prompt tuning and external Knowledge''
+Code demo for paper ``A commit classification framework incorporated with Prompt tuning and external Knowledge```
 In order to easily reproduce our method, we use ```pip freeze > requirements.txt``` to output the packages used in our experimental environment.
 you can try ```pip install -r requirements.txt``` to obtain the similar environment with us.
 
@@ -21,8 +21,8 @@ Since the files in the dataset folder is big, you can't git clone this repo to d
 ## Experimental results
 All experiment results are stored in the notebook folder, for example, the folder with the name E-2-5 means, the E(experiment) result on Dataset II (Single-label multi-class classification) with 5 shots(5 samples for each label). 
 
-There are also directories with named ``Muilt'' for example, notebooks\E-50\Muilt, it's the experiment result of unified models for both tasks, however, the result is not good, so we didn't make them in the paper.
+There are also directories with named ```Muilt``` for example, notebooks\E-50\Muilt, it's the experiment result of unified models for both tasks, however, the result is not good, so we didn't make them in the paper.
 
-The ablation study results are shown in  ``M-BASE-PKG_I'', ``M-Flan-T5-PKG_I'', ``K-BASE-PKG_I'' and ``K-Flan-PKG_I'', where  ``M-BASE-PKG_I'' stands for pipeline with T5 model and no knowledgeable_verbalizer, while K-Flan-PKG_I stands for pipeline with FLAN-T5 and knowledgeable_verbalizer.
+The ablation study results are shown in  ```M-BASE-PKG_I```, ``M-Flan-T5-PKG_I```, ```K-BASE-PKG_I``` and ``K-Flan-PKG_I```, where  ```M-BASE-PKG_I``` stands for pipeline with T5 model and no knowledgeable_verbalizer, while K-Flan-PKG_I stands for pipeline with FLAN-T5 and knowledgeable_verbalizer.
  
 
