@@ -1,11 +1,11 @@
-# CommitFit
+# IPCK
 
 ## Environment
 Code demo for paper ``A commit classification framework incorporated with Prompt tuning and external Knowledge''
 In order to easily reproduce our method, we use ```pip freeze > requirements.txt``` to output the packages used in our experimental environment.
 you can try ```pip install -r requirements.txt``` to obtain the similar environment with us.
 
-You should also download Hugginface models, if you are facing the vpn issue. Please download the models by running req.py
+### You should also download Hugginface models, if you are facing the VPN issue. Please download the models by running req.py
 . 
 ## Datasets
 The datasets we used can be find from the dataset folder 
