@@ -12,8 +12,8 @@ def simple_tokenizer(text, vocab):
 def build_vocab(data):
     vocab = {'<pad>': 0, '<unk>': 1}
     index = 2
-    for sentence1, _ in data:
-        for token in re.findall(r'\b\w+\b', sentence1.lower()):
+    for sentence1, sentence2, _ in data:
+        for token in re.findall(r'\b\w+\b', sentence1.lower()) + re.findall(r'\b\w+\b', sentence2.lower()):
             if token not in vocab:
                 vocab[token] = index
                 index += 1

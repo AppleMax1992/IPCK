@@ -22,28 +22,26 @@ class CombinedModel(nn.Module):
     def __init__(self, vocab_size, embed_dim, num_heads, hidden_dim, num_layers, dropout):
         super(CombinedModel, self).__init__()
         self.encoder1 = TransformerEncoderModel(vocab_size, embed_dim, num_heads, hidden_dim, num_layers, dropout)
-        # self.encoder2 = TransformerEncoderModel(vocab_size, embed_dim, num_heads, hidden_dim, num_layers, dropout)
+        self.encoder2 = TransformerEncoderModel(vocab_size, embed_dim, num_heads, hidden_dim, num_layers, dropout)
         self.dropout = nn.Dropout(dropout)
-        self.classifier = nn.Linear(embed_dim, 2)
+        self.classifier = nn.Linear(embed_dim * 2, 2)
 
-    def forward(self, inputs):
-        outputs = self.encoder1(inputs)
-        # outputs2 = self.encoder2(inputs2)
-        # combined = torch.cat((outputs1, outputs2), dim=1)
-        # combined = self.dropout(combined)
-        outputs = self.dropout(outputs)
-        logits = self.classifier(outputs)
+    def forward(self, inputs1, inputs2):
+        outputs1 = self.encoder1(inputs1)
+        outputs2 = self.encoder2(inputs2)
+        combined = torch.cat((outputs1, outputs2), dim=1)
+        combined = self.dropout(combined)
+        logits = self.classifier(combined)
         return logits
 
-    def predict(self, sentence1, vocab):
+    def predict(self, sentence1, sentence2, vocab):
         self.eval()
         with torch.no_grad():
-            inputs = torch.tensor([simple_tokenizer(sentence1, vocab)], dtype=torch.long).to(next(self.parameters()).device)
-            # inputs2 = torch.tensor([simple_tokenizer(sentence2, vocab)], dtype=torch.long).to(next(self.parameters()).device)
-            # inputs1 = inputs[:, :128]  # Ensure inputs are of max_length 128
-            # inputs2 = inputs2[:, :128]  # Ensure inputs are of max_length 128
-            # logits = self.forward(inputs1, inputs2)
-            logits = self.forward(inputs)
+            inputs1 = torch.tensor([simple_tokenizer(sentence1, vocab)], dtype=torch.long).to(next(self.parameters()).device)
+            inputs2 = torch.tensor([simple_tokenizer(sentence2, vocab)], dtype=torch.long).to(next(self.parameters()).device)
+            inputs1 = inputs1[:, :128]  # Ensure inputs are of max_length 128
+            inputs2 = inputs2[:, :128]  # Ensure inputs are of max_length 128
+            logits = self.forward(inputs1, inputs2)
             probabilities = torch.softmax(logits, dim=1)
             predicted_class = torch.argmax(probabilities, dim=1).item()
             return predicted_class, probabilities.cpu().numpy()
@@ -59,16 +57,13 @@ class CombinedModel(nn.Module):
             self.train()
             total_loss = 0
             for batch in train_loader:
-                # inputs1, inputs2, labels = batch
-                inputs,  labels = batch
-                nputs, labels = inputs.to(device), labels.to(device)
-                # inputs1, inputs2, labels = inputs1.to(device), inputs2.to(device), labels.to(device)
+                inputs1, inputs2, labels = batch
+                inputs1, inputs2, labels = inputs1.to(device), inputs2.to(device), labels.to(device)
 
                 optimizer.zero_grad()
-                # logits = self(inputs1, inputs2)
-                logits = self(inputs)
+                logits = self(inputs1, inputs2)
                 loss = criterion(logits, labels)
-                loss.mean().backward()
+                loss.backward()
                 optimizer.step()
 
                 total_loss += loss.item()
@@ -87,10 +82,10 @@ class CombinedModel(nn.Module):
         all_predictions = []
         with torch.no_grad():
             for batch in val_loader:
-                inputs1, labels = batch
-                inputs1, labels = inputs1.to(device), inputs2.to(device), labels.to(device)
+                inputs1, inputs2, labels = batch
+                inputs1, inputs2, labels = inputs1.to(device), inputs2.to(device), labels.to(device)
 
-                logits = self(inputs1)
+                logits = self(inputs1, inputs2)
                 _, predicted = torch.max(logits, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()

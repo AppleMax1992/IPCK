@@ -18,10 +18,10 @@ class CommitDataset(Dataset):
             return token_ids + [self.vocab['<pad>']] * (self.max_length - len(token_ids))
 
     def get_embedding(self, idx):
-        sentence1, label = self.data[idx]
+        sentence1, sentence2, label = self.data[idx]
         token_ids1 = self.pad_and_truncate(simple_tokenizer(sentence1, self.vocab))
-        # token_ids2 = self.pad_and_truncate(simple_tokenizer(sentence2, self.vocab))
-        return torch.tensor(token_ids1, dtype=torch.long), torch.tensor(label, dtype=torch.long)
+        token_ids2 = self.pad_and_truncate(simple_tokenizer(sentence2, self.vocab))
+        return torch.tensor(token_ids1, dtype=torch.long), torch.tensor(token_ids2, dtype=torch.long), torch.tensor(label, dtype=torch.long)
 
     def __getitem__(self, idx):
         return self.get_embedding(idx)
