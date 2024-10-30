@@ -25,4 +25,5 @@ The few-shot experiment results are in the ```E-5,E-10,E-15,E-20,E-50``` folders
 
 The ablation study results are shown in  ```M-BASE-PKG_I, M-Flan-T5-PKG_I , K-BASE-PKG_I and K-Flan-PKG_I``` , where  ```M-BASE-PKG_I``` stands for pipeline with T5 model and no knowledgeable_verbalizer, while K-Flan-PKG_I stands for pipeline with FLAN-T5 and knowledgeable_verbalizer.
  
-There are also directories with named ```Muilt``` for example, in ```notebooks\E-50\Muilt```, it's the experiment result of unified models for both tasks, however, the result is not good, so we didn't make them in the paper.
+To test the performance of multi-task, we first merged the two datasets, expanded the knowledgeable verbalizer, and finally conducted experiments on the test set of {Dataset}_{II}, the code are shared in https://github.com/AppleMax1992/IPCK/blob/master/notebooks/E-All/K-Flan-PKG_Unified.ipynb.  However, the results were not ideal. Therefore, we still adopted the method of separate training.
+
